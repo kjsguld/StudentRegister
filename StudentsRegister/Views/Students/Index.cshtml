@@ -1,0 +1,15 @@
+﻿@model IEnumerable<StudentsRegister.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<ul>
+    @foreach (var student in Model)
+    {
+        <li>@student.Name</li>
+    }
+    
+</ul>
+
