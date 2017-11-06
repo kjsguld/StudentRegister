@@ -1,0 +1,18 @@
+﻿@model StudentsRegister.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>Details for @Model.Name</h1>
+
+<dl>
+    <dt>@Model.Name</dt>
+    <dd>@Model.Id</dd>
+    <dd>@Model.GetBirthdate</dd>
+    <dd>@Model.Gender</dd>
+    <dd>@Model.CPR</dd>
+</dl>
+<hr />
+@Html.ActionLink("Go Back", "Index")
+

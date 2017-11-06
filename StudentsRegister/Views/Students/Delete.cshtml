@@ -1,0 +1,20 @@
+﻿@model StudentsRegister.Models.Student
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<p>Are you sure you want to delete @Model.Name</p>
+<dl>
+    <dt>@Model.Name</dt>
+    <dd>@Model.GetBirthdate</dd>
+    <dd>@Model.CPR</dd>
+    <dd>@Model.Gender</dd>
+</dl>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </div>
+}

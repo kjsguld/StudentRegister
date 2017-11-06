@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,7 +16,21 @@ namespace StudentsRegister.Models
 
         public DateTime Birthdate { get; set; }
 
-        public char Gender { get; set; }
+        [NotMapped]
+        public string GetBirthdate
+        {
+            get
+            {
+                return Birthdate.ToString("dd/MM/yyyy");
+            }
+        }
 
+        public GenderType Gender { get; set; }
+
+        public enum GenderType
+        {
+            Male,
+            Female
+        }
     }
 }
