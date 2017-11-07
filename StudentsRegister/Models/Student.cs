@@ -32,5 +32,7 @@ namespace StudentsRegister.Models
             Male,
             Female
         }
+
+        public byte[] Picture { get; set; }
     }
 }

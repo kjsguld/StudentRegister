@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using StudentsRegister.Common;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,7 +23,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Students list", "Index", "Students")</li>
+                    <li class="@Html.IsSelected(actions: "Index", controllers: "Students", cssClass: "active")">
+                        @Html.ActionLink("Students list", "Index", "Students")
+                    </li>
+                    <li class="@Html.IsSelected(actions: "Create", controllers: "Students", cssClass: "active")">
+                        @Html.ActionLink("Add Student", "Create", "Students")
+                    </li>
                 </ul>
             </div>
         </div>

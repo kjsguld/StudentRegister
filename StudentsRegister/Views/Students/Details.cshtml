@@ -2,10 +2,13 @@
 
 @{
     ViewBag.Title = "Details";
+    var bytes = Model.Picture;
+    string rawPicture = Convert.ToBase64String(bytes, 0, bytes.Length);
+    var picture = "data:image/png;base64," + rawPicture;
 }
 
 <h1>Details for @Model.Name</h1>
-
+<img class="col-sm-12" src="@picture" alt="@Model.Name" />
 <dl>
     <dt>@Model.Name</dt>
     <dd>@Model.Id</dd>

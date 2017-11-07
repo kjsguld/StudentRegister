@@ -22,10 +22,13 @@
                 <td>@student.CPR</td>
                 <td>@student.GetBirthdate</td>
                 <td>@student.Gender</td>
-                <td>Edit</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = student.Id })</td>
                 <td>@Html.ActionLink("Delete", "Delete", new { id = student.Id})</td>
             </tr>
         }
     </tbody>
 </table>
+<div>
+    <button class="btn btn-default">@Html.ActionLink("Create New", "Create", "Students" )</button>
+</div>
 

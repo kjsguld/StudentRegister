@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using StudentsRegister.Models;
 using System.Net;
+using System.IO;
 
 namespace StudentsRegister.Controllers
 {
@@ -34,7 +35,7 @@ namespace StudentsRegister.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //find student by id
-            var student = db.Students.Find(id);
+            Student student = db.Students.Find(id);
             //if the student doesn't exist
             if (student == null)
             {
@@ -57,6 +58,51 @@ namespace StudentsRegister.Controllers
             db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("index");
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Student student = db.Students.Find(id);
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
+            return View(student);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Student student, HttpPostedFileBase imageFile)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageFile.InputStream.CopyTo(ms);
+                student.Picture = ms.ToArray();
+            }
+
+                db.Entry(student).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Create()
+        {
+            return View("Create");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Student student)
+        {
+            db.Entry(student).State = System.Data.Entity.EntityState.Added;
+            //db.Students.Add(student);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
     }
 }
