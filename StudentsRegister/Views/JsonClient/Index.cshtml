@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Json Client</title>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+
+    <h1>Students from API</h1>
+    <button id="btn">Get Students</button><br />
+    <ul id="students"></ul>
+
+    <button id="btnSingle">Get Student 7</button><br />
+    <div id="description"></div>
+
+    <script>
+        $("#btn").click(function () {
+            $("#students").empty();
+            $.getJSON("/api/StudentsApi", function (result) {
+                $.each(result, function (i, field) {
+                    $("#students").append('<li><a class="btnSingle" href="#" data-id="'+ field.Id+'">' + field.Name + '<a></li>');
+                })
+
+                $(".btnSingle").click(function () {
+                    event.preventDefault();
+                    $("#description").empty();
+                    var requestID = $(this).data("id");
+                    console.log(requestID);
+                    $.getJSON("/api/StudentsApi/" + requestID, function (result) {
+                        console.log(result);
+                        $("#description").append('<p>' + result.Name + '</p><p>' + result.Birthdate + '</p>');
+                    })
+                })
+            })
+        })
+
+        
+
+    </script>
+
+</body>
+</html>

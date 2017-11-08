@@ -23,10 +23,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@Html.IsSelected(actions: "Index", controllers: "Students", cssClass: "active")">
+                    <li class="@Html.IsActive(action: "Index", controller: "Home")" >
+                        @Html.ActionLink("Home", "Index", "Home" )
+                    </li>
+                    <li class="@Html.IsActive(action: "Index", controller: "Students")">
+                    @*<li class="@Html.IsSelected(actions: "Index", controllers: "Students", cssClass: "active")">*@
                         @Html.ActionLink("Students list", "Index", "Students")
                     </li>
-                    <li class="@Html.IsSelected(actions: "Create", controllers: "Students", cssClass: "active")">
+                    <li class="@Html.IsActive(action:"Create", controller: "Students")">
+                    @*<li class="@Html.IsSelected(actions: "Create", controllers: "Students", cssClass: "active")">*@
                         @Html.ActionLink("Add Student", "Create", "Students")
                     </li>
                 </ul>

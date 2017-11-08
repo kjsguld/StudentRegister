@@ -3,19 +3,26 @@
 @{
     ViewBag.Title = "Details";
     var bytes = Model.Picture;
-    string rawPicture = Convert.ToBase64String(bytes, 0, bytes.Length);
-    var picture = "data:image/png;base64," + rawPicture;
+    var picture = "/assets/nopicture.jpg";
+    if(bytes != null)
+    {
+        string rawPicture = Convert.ToBase64String(bytes, 0, bytes.Length);
+        picture = "data:image/png;base64," + rawPicture;
+    }
+
 }
 
 <h1>Details for @Model.Name</h1>
-<img class="col-sm-12" src="@picture" alt="@Model.Name" />
-<dl>
-    <dt>@Model.Name</dt>
-    <dd>@Model.Id</dd>
-    <dd>@Model.GetBirthdate</dd>
-    <dd>@Model.Gender</dd>
-    <dd>@Model.CPR</dd>
-</dl>
+<section>
+    <img class="col-sm-12 col-md-4" src="@picture" alt="@Model.Name" />
+    <dl class="col-sm-12 col-md-8">
+        <dt>@Model.Name</dt>
+        <dd>@Model.Id</dd>
+        <dd>@Model.GetBirthdate</dd>
+        <dd>@Model.Gender</dd>
+        <dd>@Model.CPR</dd>
+    </dl>
+</section>
 <hr />
 @Html.ActionLink("Go Back", "Index")
 
